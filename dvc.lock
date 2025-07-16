@@ -1,0 +1,84 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: c1464cdf623f1a5f2f1bbef3e0f7782b
+      size: 2728
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 6d7c9717b531961233cd66af69381384.dir
+      size: 817597
+      nfiles: 2
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 6d7c9717b531961233cd66af69381384.dir
+      size: 817597
+      nfiles: 2
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: f7ce00687ea5fa3878c1337d2e98effc
+      size: 2349
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: adfe8ed84c05a3ca24002d5e442f05b8.dir
+      size: 605339
+      nfiles: 2
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: adfe8ed84c05a3ca24002d5e442f05b8.dir
+      size: 605339
+      nfiles: 2
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 31d16b6454fefa497eb8ea895019d977
+      size: 1176
+    outs:
+    - path: data/features
+      hash: md5
+      md5: c68e509492b7daf25fedac1c57cf8b37.dir
+      size: 1108092
+      nfiles: 2
+  model_building:
+    cmd: python src/model_building.py
+    deps:
+    - path: data/features
+      hash: md5
+      md5: c68e509492b7daf25fedac1c57cf8b37.dir
+      size: 1108092
+      nfiles: 2
+    - path: src/model_building.py
+      hash: md5
+      md5: 9ab0d88122efc5da4dedb40f3ef77895
+      size: 462
+    outs:
+    - path: model.pkl
+      hash: md5
+      md5: adc8173ffd43a61824c2b4676a298692
+      size: 122458
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: model.pkl
+      hash: md5
+      md5: adc8173ffd43a61824c2b4676a298692
+      size: 122458
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: 4ac3d14671b25e51e22a457706822e8f
+      size: 808
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: d21eb26688e469fd857a9b0563b8837f
+      size: 140

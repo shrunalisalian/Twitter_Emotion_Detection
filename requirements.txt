@@ -1,0 +1,16 @@
+scikit-learn
+xgboost
+nltk
+pandas
+numpy
+dvc
+PyYAML
+-e .
+ Your Conda base environment is located at:
+swift
+Copy
+Edit
+
+# So, the correct Python binary is:
+# /Users/shru/opt/anaconda3/bin/python
+# /Users/shru/opt/anaconda3/bin/python src/data_ingestion.py
