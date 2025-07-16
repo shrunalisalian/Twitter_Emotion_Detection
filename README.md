@@ -6,16 +6,27 @@ This project builds an end-to-end machine learning pipeline to classify tweets i
 ---
 ## 📂 Project Structure
 .
-├── data/ # Raw, processed, and feature data (DVC-tracked)
-├── src/ # Modular Python scripts (ingestion, preprocessing, features, training)
-├── twitter_emotion_detection.ipynb # Interactive notebook
-├── dvc.yaml # DVC pipeline definition
-├── dvc.lock # Auto-generated lock file
-├── model.pkl # Trained XGBoost model (DVC output)
-├── metrics.json # Evaluation metrics logged by DVC
-├── requirements.txt # Python dependencies
-├── .gitignore
-└── README.md
+├── data/                       # Raw, processed, and feature data (DVC-tracked)
+│   ├── raw/                    # Original data split (train/test)
+│   ├── processed/              # Cleaned and preprocessed tweets
+│   └── features/               # Bag-of-Words transformed data
+│
+├── src/                        # Modular Python scripts
+│   ├── data_ingestion.py       # Downloads and filters the dataset
+│   ├── data_preprocessing.py   # Text cleaning and normalization
+│   ├── feature_engineering.py  # Bag-of-Words transformation
+│   ├── model_training.py       # XGBoost model training
+│   └── evaluate.py             # Model evaluation and metric logging
+│
+├── twitter_emotion_detection.ipynb   # Interactive notebook version of the pipeline
+├── dvc.yaml                   # DVC pipeline stage definitions
+├── dvc.lock                   # Auto-generated lock file with exact inputs/outputs
+├── model.pkl                  # Trained XGBoost model (DVC output)
+├── metrics.json               # Evaluation metrics (accuracy, precision, recall, etc.)
+├── requirements.txt           # Python dependencies
+├── .gitignore                 # Files and folders to ignore in Git
+└── README.md                  # Project documentation
+
 
 ---
 
